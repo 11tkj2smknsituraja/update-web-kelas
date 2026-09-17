@@ -1,0 +1,2760 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelas 11 TKJ 2 - SMKN Situraja</title>
+<meta name="description" content="Website resmi Kelas 11 TKJ 2 SMKN Situraja. Berisi profil siswa, jadwal piket, galeri kegiatan, dan dokumentasi kelas.">
+<!-- GANTI title & description sesuai nama kelas/sekolah lu kalau beda -->
+
+<!-- Open Graph biar tampilan link bagus kalau di-share ke WhatsApp/IG -->
+<meta property="og:title" content="Kelas 11 TKJ 2 - SMKN Situraja">
+<meta property="og:description" content="Website resmi Kelas 11 TKJ 2 SMKN Situraja. Profil siswa, jadwal piket, galeri kegiatan, dan lainnya.">
+<meta property="og:image" content="https://i.ibb.co.com/6JT0wGD5/IMG-20260820-WA0014.jpg">
+<meta property="og:type" content="website">
+
+<style>
+
+:root {
+    --purple: #6c4df6;
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --muted: #666;
+    --card: #f7f7f9;
+    --border: #eaeaea;
+}
+
+body.dark {
+    --bg: #121214;
+    --text: #f2f2f2;
+    --muted: #a0a0a0;
+    --card: #1c1d21;
+    --border: #2a2b30;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.splash-active {
+    overflow: hidden;
+    height: 100vh;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: .3s;
+
+    padding-bottom: 70px;
+}
+
+
+/* ========= SPLASH SCREEN ========= */
+
+.splash {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    background: #121214;
+    color: #f2f2f2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 20px;
+
+    transition: opacity .4s, visibility .4s;
+}
+
+.splash.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-icon {
+    font-size: 56px;
+
+    margin-bottom: 14px;
+
+    animation: float 2.4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.splash-name {
+    font-size: 34px;
+    font-weight: 900;
+
+    background: linear-gradient(90deg, #6c4df6, #4fd1ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    margin-bottom: 8px;
+}
+
+.splash-jurusan {
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: #a0a0a0;
+}
+
+.splash-sekolah {
+    font-size: 13px;
+
+    color: #6c4df6;
+
+    margin-top: 4px;
+    margin-bottom: 26px;
+}
+
+.splash-bar {
+    width: 220px;
+    height: 4px;
+
+    background: #2a2b30;
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    margin-bottom: 10px;
+}
+
+.splash-bar-fill {
+    height: 100%;
+    width: 0%;
+
+    background: linear-gradient(90deg, #6c4df6, #4fd1ff);
+
+    animation: loadbar 1.8s ease forwards;
+}
+
+@keyframes loadbar {
+    to { width: 100%; }
+}
+
+.splash-status {
+    font-size: 12px;
+    color: #666;
+
+    margin-bottom: 26px;
+}
+
+.splash-enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 13px 26px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: linear-gradient(90deg, #6c4df6, #4b32c3);
+    color: white;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    opacity: 0;
+
+    animation: fadein .5s ease forwards;
+    animation-delay: 1.8s;
+}
+
+@keyframes fadein {
+    to { opacity: 1; }
+}
+
+
+/* ========= NAVBAR ========= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-top {
+    max-width: 1000px;
+    margin: auto;
+
+    padding: 16px 20px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    position: relative;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 900;
+
+    color: var(--text);
+}
+
+.icon-btn {
+    position: absolute;
+    right: 20px;
+
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--card);
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav-tabs {
+    max-width: 1000px;
+    margin: auto;
+
+    padding: 0 20px 14px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.tab-btn {
+    padding: 8px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    background: var(--card);
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tab-btn.active {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: white;
+}
+
+
+/* ========= PAGE ========= */
+
+.page {
+    display: none;
+
+    max-width: 1000px;
+    margin: auto;
+
+    padding: 24px 20px;
+}
+
+.page.active {
+    display: block;
+}
+
+.section-title {
+    font-size: 12px;
+    font-weight: 800;
+
+    color: var(--purple);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    margin-bottom: 6px;
+}
+
+.section-heading {
+    font-size: 22px;
+    font-weight: 900;
+
+    margin-bottom: 6px;
+}
+
+.section-sub {
+    color: var(--muted);
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ========= HERO (Beranda) ========= */
+
+.hero {
+    background: linear-gradient(135deg, var(--purple), #4b32c3);
+    color: white;
+
+    border-radius: 20px;
+
+    padding: 28px 22px;
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+.hero-badge {
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    opacity: .8;
+
+    margin-bottom: 8px;
+}
+
+.hero h1 {
+    font-size: 30px;
+    font-weight: 900;
+
+    margin-bottom: 4px;
+}
+
+.hero-jurusan {
+    font-size: 13px;
+    opacity: .85;
+
+    margin-bottom: 16px;
+}
+
+.hero-quote {
+    background: rgba(255,255,255,.12);
+
+    border-radius: 12px;
+
+    padding: 12px 16px;
+
+    font-size: 13px;
+    font-style: italic;
+
+    margin-bottom: 16px;
+}
+
+.hero-ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    background: rgba(255,255,255,.18);
+
+    padding: 8px 18px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: white;
+    text-decoration: none;
+}
+
+
+/* ========= WALI KELAS ========= */
+
+.wali-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+}
+
+.wali-photo {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    border: 2px solid var(--purple);
+
+    overflow: hidden;
+
+    background: var(--border);
+}
+
+.wali-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wali-name {
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.wali-role {
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: 700;
+
+    margin: 3px 0 6px;
+}
+
+.wali-quote {
+    color: var(--muted);
+    font-size: 13px;
+    font-style: italic;
+}
+
+
+/* ========= FOTO KELAS ========= */
+
+.foto-kelas {
+    width: 100%;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    margin-bottom: 4px;
+}
+
+.foto-kelas img {
+    width: 100%;
+    display: block;
+
+    cursor: zoom-in;
+}
+
+.foto-caption {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: none;
+
+    padding: 10px 16px;
+
+    font-size: 13px;
+    color: var(--muted);
+
+    border-radius: 0 0 18px 18px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ========= STATS ========= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    padding: 18px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 26px;
+    font-weight: 900;
+
+    color: var(--purple);
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--muted);
+
+    margin-top: 4px;
+}
+
+
+/* ========= PROFIL SISWA ========= */
+
+.search-box {
+    width: 100%;
+
+    padding: 12px 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--card);
+    color: var(--text);
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
+}
+
+.filter-row {
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 14px;
+
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    background: var(--card);
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: white;
+}
+
+.result-count {
+    font-size: 13px;
+    color: var(--muted);
+
+    margin-bottom: 14px;
+}
+
+.struktur-wrap {
+    margin-bottom: 26px;
+}
+
+.struktur-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--purple);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin: 18px 0 10px;
+}
+
+.struktur-label:first-child {
+    margin-top: 0;
+}
+
+.struktur-top {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.struktur-mid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+}
+
+.struktur-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    padding: 14px;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.struktur-card.top {
+    padding: 18px 14px;
+    border: 2px solid var(--purple);
+}
+
+.struktur-badge {
+    display: inline-block;
+
+    background: var(--purple);
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .3px;
+
+    padding: 3px 10px;
+    border-radius: 20px;
+
+    margin-bottom: 8px;
+}
+
+.struktur-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    margin: 0 auto 8px;
+
+    border-radius: 12px;
+
+    background: var(--border);
+
+    overflow: hidden;
+}
+
+.struktur-card.top .struktur-photo {
+    aspect-ratio: 4 / 3;
+}
+
+.struktur-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.struktur-name {
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.struktur-card.top .struktur-name {
+    font-size: 15px;
+}
+
+.struktur-empty-card {
+    cursor: default;
+    opacity: .6;
+    border-style: dashed;
+}
+
+.struktur-empty {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+}
+
+.student-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    padding: 16px;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.student-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    margin: 0 auto 10px;
+
+    border-radius: 12px;
+
+    background: var(--border);
+
+    overflow: hidden;
+}
+
+.student-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.student-name {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.student-absen {
+    font-size: 12px;
+    color: var(--muted);
+
+    margin: 3px 0 6px;
+}
+
+.student-hint {
+    font-size: 11px;
+    color: var(--purple);
+    font-weight: 700;
+}
+
+
+/* ========= STUDENT MODAL ========= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.6);
+
+    z-index: 998;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .25s;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.student-modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,-50%) scale(.95);
+
+    width: min(360px,88%);
+
+    background: var(--bg);
+
+    border-radius: 18px;
+
+    padding: 26px 22px;
+    text-align: center;
+
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .25s;
+}
+
+.student-modal.open {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.student-modal .student-photo {
+    width: 90px;
+    height: 90px;
+
+    border: 2px solid var(--purple);
+}
+
+.student-modal .student-name {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.student-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--card);
+    color: var(--text);
+
+    font-size: 18px;
+}
+
+
+/* ========= PIKET ========= */
+
+.piket-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+}
+
+.piket-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px 16px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.piket-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(108,77,246,.12);
+}
+
+.piket-day {
+    color: var(--purple);
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.piket-day-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--purple), #4b32c3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.piket-names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.piket-pill {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    transition: background .15s, border-color .15s;
+}
+
+.piket-pill:hover {
+    border-color: var(--purple);
+    background: rgba(108,77,246,.08);
+}
+
+
+/* ========= GALLERY ========= */
+
+.galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+
+    margin-bottom: 24px;
+}
+
+.galeri-item {
+    aspect-ratio: 1/1;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    background: var(--border);
+
+    position: relative;
+
+    cursor: zoom-in;
+}
+
+.galeri-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.galeri-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background: linear-gradient(transparent, rgba(0,0,0,.7));
+
+    color: white;
+    font-size: 12px;
+
+    padding: 20px 10px 8px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 640px) {
+    .video-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.video-wrap {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    background: #000;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+
+.video-wrap video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+    background: #000;
+    display: block;
+}
+
+.video-caption {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+
+/* ========= LIGHTBOX ========= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.92);
+
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .25s;
+}
+
+.lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 92%;
+    max-height: 85vh;
+
+    border-radius: 10px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.15);
+    color: white;
+
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.18);
+    color: white;
+
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: background .2s;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255,255,255,.3);
+}
+
+.lightbox-prev {
+    left: 12px;
+}
+
+.lightbox-next {
+    right: 12px;
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: rgba(255,255,255,.8);
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(0,0,0,.4);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+
+/* ========= MUSIK ========= */
+
+.song-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+.song-card {
+    position: relative;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.song-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.12);
+}
+
+.song-card.playing {
+    border-color: var(--purple);
+    box-shadow: 0 10px 24px rgba(108,77,246,.25);
+}
+
+.song-cover {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 1/1;
+
+    overflow: hidden;
+
+    background: var(--border);
+}
+
+.song-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform .3s ease;
+}
+
+.song-card:hover .song-cover img {
+    transform: scale(1.06);
+}
+
+.song-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.55) 100%);
+}
+
+.song-play {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 2;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, var(--purple), #4b32c3);
+    color: white;
+
+    font-size: 16px;
+
+    box-shadow: 0 6px 14px rgba(108,77,246,.45);
+    transition: transform .2s ease;
+}
+
+.song-play:active {
+    transform: scale(.92);
+}
+
+.song-info {
+    padding: 10px 12px 12px;
+}
+
+.song-title {
+    font-size: 13px;
+    font-weight: 800;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-artist {
+    font-size: 11px;
+    color: var(--muted);
+
+    margin-bottom: 8px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-progress {
+    width: 100%;
+    height: 3px;
+
+    background: var(--border);
+    border-radius: 4px;
+
+    overflow: hidden;
+}
+
+.song-progress-fill {
+    height: 100%;
+    width: 0%;
+
+    background: linear-gradient(90deg, var(--purple), #4fd1ff);
+
+    transition: width .1s linear;
+}
+
+
+/* ========= NOW PLAYING BAR ========= */
+
+.now-playing {
+    position: fixed;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    padding: 10px 12px;
+
+    display: none;
+    align-items: center;
+    gap: 12px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    backdrop-filter: blur(10px);
+
+    z-index: 200;
+
+    overflow: hidden;
+}
+
+.now-playing::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+
+    background: linear-gradient(90deg, var(--purple), #4fd1ff);
+}
+
+.now-playing.show {
+    display: flex;
+}
+
+.now-playing-icon {
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, var(--purple), #4b32c3);
+
+    font-size: 15px;
+}
+
+.now-playing-title {
+    flex: 1;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.now-playing-btn {
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, var(--purple), #4b32c3);
+    color: white;
+
+    font-size: 14px;
+
+    box-shadow: 0 4px 10px rgba(108,77,246,.4);
+}
+
+
+/* ========= SPOTIFY PLAYLIST CARD ========= */
+
+.spotify-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    background: linear-gradient(135deg, #1DB954, #191414);
+    color: white;
+
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(29,185,84,.25);
+    transition: transform .2s, box-shadow .2s;
+}
+
+.spotify-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(29,185,84,.35);
+}
+
+.spotify-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.spotify-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.spotify-title {
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-sub {
+    font-size: 12px;
+    opacity: .85;
+    margin-top: 2px;
+}
+
+.spotify-arrow {
+    font-size: 22px;
+    opacity: .8;
+    flex-shrink: 0;
+}
+
+
+/* ========= DEVELOPER ========= */
+
+.dev-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 32px 22px;
+    text-align: center;
+    max-width: 420px;
+    margin: 0 auto;
+    box-shadow: 0 8px 28px rgba(0,0,0,.06);
+}
+
+.dev-photo {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--purple);
+    background: var(--border);
+}
+
+.dev-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dev-name {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 4px;
+}
+
+.dev-role {
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.dev-bio {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 18px;
+}
+
+.dev-skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.dev-skill {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.dev-social {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dev-social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af);
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(221,42,123,.25);
+}
+
+
+/* ========= FOOTER ========= */
+
+footer {
+    text-align: center;
+
+    padding: 36px 20px 26px;
+
+    color: var(--muted);
+    font-size: 13px;
+
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
+}
+
+.footer-brand {
+    font-size: 15px;
+    font-weight: 900;
+
+    color: var(--text);
+
+    margin-bottom: 4px;
+}
+
+.footer-tagline {
+    font-size: 12.5px;
+    color: var(--muted);
+
+    margin-bottom: 18px;
+}
+
+.footer-ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 22px;
+    border-radius: 30px;
+
+    background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af, #515bd4);
+    color: white;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    box-shadow: 0 6px 16px rgba(221,42,123,.25);
+    transition: transform .2s, box-shadow .2s;
+
+    margin-bottom: 18px;
+}
+
+.footer-ig:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(221,42,123,.35);
+}
+
+.footer-line {
+    width: 60px;
+    height: 3px;
+    border-radius: 3px;
+
+    margin: 0 auto 14px;
+
+    background: linear-gradient(90deg, var(--purple), #4fd1ff);
+}
+
+.footer-copy {
+    font-size: 11.5px;
+    color: var(--muted);
+    opacity: .8;
+}
+
+
+/* ========= RESPONSIVE ========= */
+
+@media(min-width: 640px) {
+
+    .stats-grid,
+    .piket-grid,
+    .student-grid,
+    .galeri-grid,
+    .song-grid {
+        grid-template-columns: repeat(4,1fr);
+    }
+
+}
+
+</style>
+</head>
+<body class="splash-active dark">
+
+
+<!-- ========= SPLASH SCREEN ========= -->
+<div class="splash" id="splash">
+
+    <div class="splash-icon">🎓</div>
+
+    <div class="splash-name">11 TKJ 2</div>
+    <div class="splash-jurusan">Teknik Komputer & Jaringan</div>
+    <div class="splash-sekolah">SMKN Situraja</div>
+    <!-- GANTI nama kelas/jurusan/sekolah -->
+
+    <div class="splash-bar">
+        <div class="splash-bar-fill"></div>
+    </div>
+
+    <div class="splash-status">Siap! 🚀</div>
+
+    <button class="splash-enter" onclick="closeSplash()">
+        🚀 Masuk ke Website
+    </button>
+
+</div>
+
+
+<!-- ========= NAVBAR ========= -->
+<header class="navbar">
+
+    <div class="nav-top">
+        <div class="logo">
+            🎓 11 TKJ 2
+            <!-- GANTI nama kelas -->
+        </div>
+
+        <button class="icon-btn" id="themeBtn" onclick="toggleDark()" title="Ganti Tema">
+            ☀️
+        </button>
+    </div>
+
+    <div class="nav-tabs">
+
+        <button class="tab-btn active" data-page="beranda" onclick="showPage('beranda')">
+            🏠 Beranda
+        </button>
+
+        <button class="tab-btn" data-page="profil" onclick="showPage('profil')">
+            👥 Profil
+        </button>
+
+        <button class="tab-btn" data-page="piket" onclick="showPage('piket')">
+            🧹 Piket
+        </button>
+
+        <button class="tab-btn" data-page="gallery" onclick="showPage('gallery')">
+            🖼️ Gallery
+        </button>
+
+        <button class="tab-btn" data-page="musik" onclick="showPage('musik')">
+            🎵 Musik
+        </button>
+
+        <button class="tab-btn" data-page="developer" onclick="showPage('developer')">
+            &lt;/&gt; Developer
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ========= PAGE: BERANDA ========= -->
+<div class="page active" id="page-beranda">
+
+    <div class="hero">
+
+        <div class="hero-badge">
+            🏫 SMKN Situraja
+            <!-- GANTI nama sekolah -->
+        </div>
+
+        <h1>11 TKJ 2</h1>
+        <!-- GANTI nama kelas -->
+
+        <div class="hero-jurusan">
+            Teknik Komputer & Jaringan
+        </div>
+
+        <div class="hero-quote">
+            "Setiap momen di bangku SMK terlalu berharga untuk dilupakan begitu saja."
+            <!-- GANTI quote kelas -->
+        </div>
+
+        <a href="https://www.instagram.com/eleventwo_engineer?stkn=MXdodmZoMHA4ajFwdA==" class="hero-ig" target="_blank" rel="noopener">
+            📷 Instagram Kelas
+        </a>
+
+    </div>
+
+
+    <div class="wali-card">
+
+        <div class="wali-photo">
+            <img
+                src="https://i.ibb.co.com/s9PS9HK6/IMG-20260910-WA0027.jpg"
+                alt="Foto Wali Kelas"
+                onerror="this.src='https://placehold.co/200x200/f0f0f2/777?text=Foto'"
+            >
+            <!-- GANTI src dengan foto wali kelas -->
+        </div>
+
+        <div>
+            <div class="wali-name">
+                Ibu Melinda Nurdianti, S.Pd., Gr
+            </div>
+
+            <div class="wali-role">
+                Wali Kelas 11 TKJ 2
+            </div>
+
+            <div class="wali-quote">
+                "Ilmu membuatmu pintar, tapi adab membuatmu dihormati. Jaga lisanmu dengan tiga kata ajaib: maaf, tolong, dan terima kasih."
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="section-title">Kebersamaan</div>
+    <div class="section-heading">Foto Kelas</div>
+
+    <div class="foto-kelas">
+        <img
+            id="fotoKelasImg"
+            src="https://i.ibb.co.com/6JT0wGD5/IMG-20260820-WA0014.jpg"
+            alt="Foto Kelas"
+            onclick="openLightbox(this.src)"
+            onerror="this.src='https://placehold.co/800x500/f0f0f2/777?text=Foto+Kelas'"
+        >
+    </div>
+
+    <div class="foto-caption">
+        📷 Kelas 11 TKJ 2 &middot; Tahun Ajaran 2026/2027
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-number">42</div>
+            <div class="stat-label">Siswa</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number">17</div>
+            <div class="stat-label">Laki-laki</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number"    id="stat-number">25</div>
+            <div class="stat-label">Perempuan</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Prestasi</div>
+            <!-- GANTI angka prestasi manual -->
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========= PAGE: PROFIL ========= -->
+<div class="page" id="page-profil">
+
+    <div class="section-title">Organisasi</div>
+    <div class="section-heading">Profil Siswa</div>
+    <div class="section-sub" id="profilSub">
+        Kelas 11 TKJ 2 &middot; SMKN Situraja
+    </div>
+
+    <div class="struktur-wrap">
+
+        <div class="struktur-label">Struktur Organisasi Kelas</div>
+        <div class="struktur-top" id="strukturTop"></div>
+        <div class="struktur-mid" id="strukturMid"></div>
+
+    </div>
+
+    <div class="struktur-label">Semua Siswa</div>
+
+    <input
+        type="text"
+        class="search-box"
+        id="searchInput"
+        placeholder="Cari nama siswa..."
+        oninput="renderStudents()"
+    >
+
+    <div class="filter-row">
+
+        <button class="filter-btn active" data-gender="semua" onclick="setGenderFilter('semua')">
+            Semua
+        </button>
+
+        <button class="filter-btn" data-gender="L" onclick="setGenderFilter('L')">
+            ♂ Laki-laki
+        </button>
+
+        <button class="filter-btn" data-gender="P" onclick="setGenderFilter('P')">
+            ♀ Perempuan
+        </button>
+
+    </div>
+
+    <div class="result-count" id="resultCount"></div>
+
+    <div class="student-grid" id="studentGrid"></div>
+
+</div>
+
+
+<!-- ========= PAGE: PIKET ========= -->
+<div class="page" id="page-piket">
+
+    <div class="section-title">Kebersihan</div>
+    <div class="section-heading">Jadwal Piket</div>
+    <div class="section-sub">
+        Jadwal piket kebersihan kelas 11 TKJ 2
+    </div>
+
+    <div class="piket-grid" id="piketGrid"></div>
+
+</div>
+
+
+<!-- ========= PAGE: GALLERY ========= -->
+<div class="page" id="page-gallery">
+
+    <div class="section-title">Momen</div>
+    <div class="section-heading">Galeri Kegiatan</div>
+    <div class="section-sub">
+        Kumpulan foto & video kegiatan kelas
+    </div>
+
+    <div class="galeri-grid">
+
+        <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/7csxywG/IMG-20260831-WA0080.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+        </div>
+
+        <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/wZ6Hz9qN/IMG-20260831-WA0061.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+        </div>
+
+        <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/WvsCPLxh/IMG-20260715-WA0051.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+        </div>
+
+      <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/B19g90M/IMG-20260907-WA0012.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+      </div>
+
+      <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/mFV03Ymr/IMG-20260625-WA0014.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+      </div>
+
+      <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/7xLfC6rG/IMG-20260617-WA0007.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+      </div>
+
+      <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/nsjLKC3K/IMG-20260619-WA0117.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+      </div>
+
+      <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/DD30XS2M/IMG-20260910-WA0060.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+      </div>
+
+      <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/7tW5BdY1/IMG-20260826-WA0003.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+      </div>
+
+      <div class="galeri-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img
+                src="https://i.ibb.co.com/j99kYk3t/IMG-20260910-WA0063.jpg"
+                alt=""
+                onerror="this.src='https://placehold.co/400x400/f0f0f2/777?text=Kegiatan'"
+            >
+            <div class="galeri-caption"></div>
+      </div>
+      
+
+        <!-- COPY blok .galeri-item di atas kalau mau nambah foto -->
+
+    </div>
+
+
+    <div class="section-title">Dokumentasi</div>
+    <div class="section-heading">Video Kelas</div>
+
+    <div class="video-grid">
+        <div>
+            <div class="video-wrap">
+                <video
+                    class="kelas-video"
+                    src="https://yourimageshare.com/ib/ZNSyCcJkOf.mp4"
+                    controls
+                    playsinline
+                    preload="metadata">
+                </video>
+            </div>
+            <div class="video-caption">Video Profil Kelas 11 TKJ 2</div>
+        </div>
+
+        <div>
+            <div class="video-wrap">
+                <video
+                    class="kelas-video"
+                    src="https://fancy-yellow-6yuaidti.edgeone.dev/"
+                    controls
+                    playsinline
+                    preload="metadata">
+                </video>
+            </div>
+            <div class="video-caption">Video Kedua</div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ========= PAGE: MUSIK ========= -->
+<div class="page" id="page-musik">
+
+    <div class="section-title">Hiburan</div>
+    <div class="section-heading">Daftar Lagu</div>
+    <div class="section-sub">
+        Pilih dan putar lagu favoritmu.
+    </div>
+
+    <!-- Playlist Spotify Kelas -->
+    <a href="https://open.spotify.com/playlist/7ahy09FbovyLpOupk8ekLI?si=a75wFYbQQUqeMNtnYQE8Kw" target="_blank" rel="noopener" class="spotify-card">
+        <div class="spotify-icon">🎧</div>
+        <div class="spotify-info">
+            <div class="spotify-title">all the feels playlist</div>
+            <div class="spotify-sub">Playlist resmi kelas · Buka di Spotify</div>
+        </div>
+        <div class="spotify-arrow">›</div>
+    </a>
+
+    <div class="song-grid" id="songGrid"></div>
+
+</div>
+
+
+<!-- ========= PAGE: DEVELOPER ========= -->
+<div class="page" id="page-developer">
+
+    <div class="section-title">Pembuat Website</div>
+    <div class="section-heading">&lt;/&gt; Profil Developer</div>
+    <div class="section-sub">
+        "Kode adalah seni, dan setiap seni punya cerita."
+    </div>
+
+    <div class="dev-card">
+
+        <div class="dev-photo">
+            <img
+                src="https://placehold.co/200x200/6c4df6/ffffff?text=Dev"
+                alt="Foto Developer"
+                onerror="this.src='https://placehold.co/200x200/6c4df6/ffffff?text=Dev'"
+            >
+            <!-- GANTI src dengan foto lu -->
+        </div>
+
+        <div class="dev-name">Hari Dwi Prasetyo</div>
+        <!-- GANTI nama -->
+
+        <div class="dev-role">Have Funr</div>
+        <!-- GANTI role kalau mau -->
+
+        <div class="dev-bio">
+            "Halo Saya pembuat website kelas 11 TKJ 2. Senang deh bisa bikin web kelas, meskipun dibantu sedikit sedikit sama AI Hahaha."
+            <!-- GANTI bio / tentang diri lu -->
+        </div>
+
+        <div class="dev-skills">
+            <span class="dev-skill">HTML</span>
+            <span class="dev-skill">CSS</span>
+            <span class="dev-skill">JavaScript</span>
+        </div>
+
+        <div class="dev-social">
+            <a href="https://www.instagram.com/_hariiidp31?stkn=ZXBreTJkZmIwZmpn" target="_blank" rel="noopener" class="dev-social-btn">📷 Instagram</a>
+            <!-- GANTI link Instagram lu -->
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========= NOW PLAYING BAR ========= -->
+<div class="now-playing" id="nowPlaying">
+
+    <div class="now-playing-icon">🎵</div>
+
+    <div class="now-playing-title" id="nowPlayingTitle">
+        -
+    </div>
+
+    <button class="now-playing-btn" id="nowPlayingBtn" onclick="toggleCurrentSong()">
+        ⏸
+    </button>
+
+</div>
+
+
+<!-- ========= STUDENT MODAL ========= -->
+<div class="modal-overlay" id="studentOverlay" onclick="closeStudentModal()"></div>
+
+<div class="student-modal" id="studentModal">
+
+    <button class="student-modal-close" onclick="closeStudentModal()">×</button>
+
+    <div class="student-photo">
+        <img
+            id="modalStudentPhoto"
+            src=""
+            alt=""
+            onerror="this.src='https://placehold.co/200x200/f0f0f2/777?text=Foto'"
+        >
+    </div>
+
+    <div class="student-name" id="modalStudentName"></div>
+    <div class="wali-role" id="modalStudentAbsen"></div>
+    <div class="wali-quote" id="modalStudentGender"></div>
+
+</div>
+
+
+<!-- ========= LIGHTBOX ========= -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+
+    <button class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()">×</button>
+
+    <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); lightboxNav(-1)">‹</button>
+    <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); lightboxNav(1)">›</button>
+
+    <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+
+</div>
+
+
+<footer>
+    <div class="footer-brand">Kelas 11 TKJ 2</div>
+    <div class="footer-tagline">SMKN Situraja &middot; Teknik Jaringan Komputer &amp; Telekomunikasi</div>
+
+    <a href="https://www.instagram.com/smknegerisituraja_official" class="footer-ig" target="_blank" rel="noopener">
+        smknegerisituraja_official
+    </a>
+
+    <div class="footer-line"></div>
+
+    <div class="footer-copy">© 2026 Kelas 11 TKJ 2 SMKN Situraja</div>
+</footer>
+
+
+<script>
+
+/* =========================
+   DATA — GANTI SESUAI KELAS LU
+========================= */
+
+const students = [
+
+  { id: 1, name: "Gian Rohiman", absen: "15", gender: "L", photo: "https://i.ibb.co.com/PGbfyS6M/IMG-20260910-WA0003-1-2.jpg", role: "Ketua Kelas" },
+  { id: 2, name: "Nizam Alfa Rezal", absen: "28", gender: "L", photo: "https://i.ibb.co.com/sd9FbJqq/IMG-20260910-WA0014.jpg", role: "Wakil Ketua" },
+  { id: 3, name: "Tamara Putri Kinanti", absen: "37", gender: "P", photo: "https://i.ibb.co.com/3yQV9t3S/IMG-20260910-WA0026.jpg", role: "Sekretaris 1" },
+  { id: 4, name: "Keyla Rivania", absen: "20", gender: "P", photo: "https://i.ibb.co.com/fz0KXYpZ/IMG-20260910-WA0057.jpg", role: "Sekretaris 2" },
+  { id: 5, name: "Sofa Fauziawati", absen: "36", gender: "P", photo: "https://i.ibb.co.com/TxqnpkNM/IMG-20260910-WA0018-2.jpg", role: "Bendahara 1" },
+  { id: 6, name: "Dhea Aulia", absen: "11", gender: "P", photo: "https://i.ibb.co.com/VYxBN2CX/IMG-20260910-WA0046.jpg", role: "Bendahara 2" },
+  { id: 7, name: "Aira Suryani", absen: "1", gender: "P", photo: "https://i.ibb.co.com/vvdXqRwr/Picsart-26-09-08-19-21-25-559.jpg" },
+  { id: 8, name: "Alin Rosalina", absen: "2", gender: "P", photo: "https://i.ibb.co.com/sk2NT2N/IMG-20260910-WA0028.jpg" },
+  { id: 9, name: "Anisa Nurfadilah", absen: "3", gender: "P", photo: "https://i.ibb.co.com/wNHrGf0V/IMG-20260910-WA0075-2.jpg" },
+  { id: 10, name: "Annisa Agus Fini", absen: "5", gender: "P", photo: "https://i.ibb.co.com/fVhxDYbr/IMG-20260910-WA0045-2.jpg" },
+  { id: 11, name: "Ayang Diva Nur Sipa", absen: "7", gender: "P", photo: "https://i.ibb.co.com/0y9Lc2CR/IMG-20260910-WA0029.jpg" },
+  { id: 12, name: "Delia Siti Fathonah", absen: "11", gender: "P", photo: "https://i.ibb.co.com/LDqz1BfS/IMG-20260910-WA0078.jpg" },
+  { id: 13, name: "Dini Amelia", absen: "13", gender: "P", photo: "https://i.ibb.co.com/twLDN6Vk/Picsart-26-09-11-18-15-34-481.jpg" },        
+  { id: 14, name: "Epi Purniawati", absen: "14", gender: "P", photo: "https://i.ibb.co.com/fGTb7vKq/IMG-20260910-WA0048.jpg" },
+  { id: 15, name: "Indri Novianti", absen: "17", gender: "P", photo: "https://i.ibb.co.com/hJnwfRPC/IMG-20260910-WA0044.jpg" },
+  { id: 16, name: "Iva Sry Febriani", absen: "19", gender: "P", photo: "https://i.ibb.co.com/qL3qBYYV/IMG-20260910-WA0040.jpg" },
+  { id: 17, name: "Kirana Sifa", absen: "21", gender: "P", photo: "https://i.ibb.co.com/TqRTpQSM/IMG-20260910-WA0006.jpg" },
+  { id: 18, name: "Meli Sulistiawati", absen: "22", gender: "P", photo: "https://i.ibb.co.com/11Wd9mk/IMG-20260910-WA0007-2.jpg" },
+  { id: 19, name: "Nadilah Agung Pratiwi", absen: "26", gender: "P", photo: "https://i.ibb.co.com/5gVKJL8k/IMG-20260910-WA0004.jpg" },
+  { id: 20, name: "Neta Ririn Haryanti", absen: "27", gender: "P", photo: "https://i.ibb.co.com/zTJMhzmh/IMG-20260910-WA0087-2.jpg" },
+  { id: 21, name: "Nuraini", absen: "29", gender: "P", photo: "https://i.ibb.co.com/Lz453fg1/IMG-20260910-WA0043.jpg" },
+  { id: 22, name: "Nurnaila", absen: "30", gender: "P", photo: "https://i.ibb.co.com/35BRqF8s/IMG-20260910-WA0041-2.jpg" },
+  { id: 23, name: "Rinasih", absen: "32", gender: "P", photo: "https://i.ibb.co.com/GvDzw4RT/IMG-20260910-WA0076-2.jpg" },
+  { id: 24, name: "Rini Fitriyani", absen: "33", gender: "P", photo: "https://i.ibb.co.com/1txQmsqd/IMG-20260910-WA0042-2.jpg" },
+  { id: 25, name: "Risa Siti Nurwahidah", absen: "34", gender: "P", photo: "https://i.ibb.co.com/TD6x0j5x/IMG-20260911-WA0000.jpg" },
+  { id: 26, name: "Windy Winangsih", absen: "40", gender: "P", photo: "https://i.ibb.co.com/Zp36rBSg/IMG-20260910-WA0074.jpg" },
+  { id: 27, name: "Zaharatusshita Anjani Indriani", absen: "42", gender: "P", photo: "https://i.ibb.co.com/xt3T6xz0/IMG-20260910-WA0049.jpg" },
+  { id: 28, name: "Andri Kusumah Dinata", absen: "3", gender: "L", photo: "https://i.ibb.co.com/GfJq6Yc1/Picsart-26-09-10-17-12-33-490.jpg" },
+  { id: 29, name: "Asep Sahidin", absen: "6", gender: "L", photo: "https://i.ibb.co.com/yc8LMrRg/IMG-20260910-WA0035.jpg" },
+  { id: 30, name: "Asep Supriatna", absen: "42", gender: "L", photo: "https://i.ibb.co.com/VWNS1KNk/Picsart-26-09-10-17-13-38-680.jpg" },
+  { id: 31, name: "Daffa Arkana Agung Prasetyo", absen: "8", gender: "L", photo: "https://i.ibb.co.com/x8MyckbN/IMG-20260910-WA0056.jpg" },
+  { id: 32, name: "Deni Apryiadi", absen: "10", gender: "L", photo: "https://i.ibb.co.com/Jw0cvcDm/IMG-20260910-WA0015-2.jpg" },
+  { id: 33, name: "Dika Saepudin", absen: "12", gender: "L", photo: "https://i.ibb.co.com/S4N5Nj7D/Picsart-26-09-11-18-15-55-260.jpg" },
+  { id: 34, name: "Hari Dwi Prasetyo", absen: "16", gender: "L", photo: "https://i.ibb.co.com/bgWJKDQw/IMG-20260712-002005-366-2.jpg" },
+  { id: 35, name: "Irham Hafiz", absen: "18", gender: "L", photo: "https://i.ibb.co.com/DPp5gMc0/IMG-20260910-WA0017.jpg" },
+  { id: 36, name: "Muhamad Alif Annjiar", absen: "23", gender: "L", photo: "https://i.ibb.co.com/Lh2dYsBk/IMG-20260910-WA0010-3.jpg" },
+  { id: 37, name: "Muhamad Taufik", absen: "24", gender: "L", photo: "https://i.ibb.co.com/DPQvNL5L/Picsart-26-09-10-17-26-58-569.jpg" },
+  { id: 38, name: "Muhammad Ridwan Nur Arifin", absen: "25", gender: "L", photo: "https://i.ibb.co.com/yBsXsXDG/IMG-20260910-WA0077.jpg" },
+  { id: 39, name: "Rehan Ali Mandegar", absen: "31", gender: "L", photo: "https://i.ibb.co.com/Z1djTcHS/IMG-20260910-WA0051-2.jpg" },
+  { id: 40, name: "Rudianto", absen: "35", gender: "L", photo: "https://i.ibb.co.com/QFsnnydJ/IMG-20260910-WA0002-2.jpg" },
+  { id: 41, name: "Vian Taufik Azhar", absen: "39", gender: "L", photo: "https://i.ibb.co.com/zHRH24T4/IMG-20260910-WA0055-3.jpg" },
+  { id: 42, name: "Wq Agatha Saputra", absen: "41", gender: "L", photo: "https://i.ibb.co.com/rR7gnZJm/IMG-20260910-WA0005-2.jpg" },
+  
+  
+    // COPY baris di atas buat nambah siswa. gender: "L" atau "P"
+    // Kalau siswa punya jabatan, tambahin role: "Ketua Kelas" / "Wakil Ketua" / "Sekretaris 1" / "Sekretaris 2" / "Bendahara 1" / "Bendahara 2"
+    // Siswa biasa TIDAK usah dikasih role sama sekali (skip aja field-nya)
+];
+
+const piket = {
+    "Senin":  ["Andri","Gian","M.Ridwan",
+              "Wq","Ayang","Indri",
+              "Nadilah","Rini"],
+    "Selasa": ["Asep Old","Hari","Nizam",
+              "Aira","Delia","Iva",
+              "Neta","Risa","Zahara"],
+    "Rabu":   ["Daffa","Irham","Rehan","Asep New",
+              "Alin","Dhea","Keyla",
+              "Nuraini","Sofa"],
+    "Kamis":  ["Deni","M.Alif","Rudi",
+              "Anisa Nur","Dini","Kirana",
+              "Nurnaila","Tamara"],
+    "Jumat":  ["Dika","M.Taufik","Vian",
+              "Anisa Agus","Evi","Meli",
+              "Rinasih","Windy"],
+    // Isi array tiap hari dengan nama siswa, contoh: "Senin": ["Budi","Ani"]
+};
+
+const songs = [
+    { 
+        id: 1, 
+        title: "back to be friends", 
+        artist: "sombr", 
+        cover: "https://i.ibb.co.com/Z6XF232y/ab67616d0000b2737fd4049ad3b037358cf809ef.jpg", 
+        src: "https://vertical-plum-tpr42qac.edgeone.dev" 
+    },
+    { 
+        id: 2, 
+        title: "in another life", 
+        artist: "Katy Perry", 
+        cover: "https://i.ibb.co.com/Dmb9cQ1/ab67616d0000b273a56dc57d708c7b62db950105.jpg", 
+        src: "https://lovely-orange-gemjvjhu.edgeone.dev" 
+    },
+    { 
+        id: 3, 
+        title: "misery", 
+        artist: "pupsies", 
+        cover: "https://i.ibb.co.com/WWFdxBC7/ab67616d0000b273316b7fde50dfbf4be72735c2.jpg", 
+        src: "https://characteristic-bronze-elbfnesq.edgeone.dev/" 
+    },
+    { 
+        id: 4, 
+        title: "about you", 
+        artist: "the 1975", 
+        cover: "https://i.ibb.co.com/nsH5QMBc/ab67616d0000b27300702474f8e0e2b6155d48e3.jpg", 
+        src: "https://combative-jade-8ca7j134.edgeone.dev/" 
+    },
+    { 
+        id: 5, 
+        title: "sebuah kisah klasik", 
+        artist: "sheila on 7", 
+        cover: "https://i.ibb.co.com/S7R2XY3y/images-20.jpg", 
+        src: "https://cognitive-amethyst-ie7bhf3y.edgeone.dev/" 
+    },
+  {
+    id: 6, 
+        title: "mokondo", 
+        artist: "rycko ria", 
+        cover: "https://i.ibb.co.com/twC89Lfr/ab67616d0000b2730c78c6ad718c65d22e495e2f.jpg", 
+        src: "https://liable-apricot-2li7exp8.edgeone.dev/"
+  },
+  {
+    id: 7, 
+        title: "33x", 
+        artist: "perunggu", 
+        cover: "https://i.ibb.co.com/Zpw3nQ04/images-21.jpg", 
+        src: "https://net-violet-ievyg3lj.edgeone.dev/"
+  },
+  {
+    id: 8, 
+        title: "everything u are", 
+        artist: "hindia", 
+        cover: "https://i.ibb.co.com/qYBD4Wpt/ab67616d00001e0205898628baab6ef07a0a4d03.jpg", 
+        src: "https://productive-turquoise-acrj12wg.edgeone.dev/"
+  },
+  {
+    id: 9, 
+        title: "memories are picture", 
+        artist: "Andrew Mcmurdia", 
+        cover: "https://i.ibb.co.com/xtpXRYSP/ab67616d0000b273a95a7db60a4dda939893921d.jpg", 
+        src: "https://favourable-apricot-hverfnuh.edgeone.dev/"
+  },
+  {
+    id: 10, 
+        title: "kita usahakan rumah itu", 
+        artist: "Sal Priadi", 
+        cover: "https://i.ibb.co.com/DH2XHX6D/1900x1900-000000-80-0-0.jpg", 
+        src: "https://certain-red-mq41hh0k.edgeone.dev/"
+  }
+];
+
+
+/* =========================
+   NAVIGASI TAB
+========================= */
+
+function showPage(name, push = true) {
+
+    // Kalau keluar dari Gallery, pause SEMUA video biar musik bisa nyala lagi
+    if (name !== "gallery") {
+        document.querySelectorAll(".kelas-video").forEach(v => {
+            if (!v.paused) v.pause();
+        });
+    }
+
+    document.querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
+
+    document.getElementById("page-" + name)
+        .classList.add("active");
+
+
+    document.querySelectorAll(".tab-btn")
+        .forEach(b => b.classList.remove("active"));
+
+    document.querySelector(`.tab-btn[data-page="${name}"]`)
+        .classList.add("active");
+
+    // Biar tombol kembali HP/browser bisa dipake
+    if (push) {
+        history.pushState({ page: name }, "", "#" + name);
+    }
+
+}
+
+// Saat user pencet tombol kembali
+window.addEventListener("popstate", (e) => {
+    const page = (e.state && e.state.page) || "beranda";
+    showPage(page, false);
+});
+
+// Set state awal + support hash URL
+(function initPageHistory() {
+    const hash = location.hash.replace("#", "");
+    if (hash && document.getElementById("page-" + hash)) {
+        showPage(hash, false);
+    } else {
+        history.replaceState({ page: "beranda" }, "", "#beranda");
+    }
+})();
+
+
+function toggleDark() {
+    document.body.classList.toggle("dark");
+    const btn = document.getElementById("themeBtn");
+    if (btn) {
+        btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+    }
+}
+
+
+function closeSplash() {
+
+    document.getElementById("splash").classList.add("hide");
+
+    document.body.classList.remove("splash-active");
+
+    // langsung stel lagu pertama begitu masuk website
+    // (dipicu dari klik tombol biar ga kena blokir autoplay browser)
+    if (songs.length > 0 && !currentAudio) {
+        playSong(songs[4].id);
+    }
+
+  }
+
+
+/* =========================
+   PROFIL SISWA
+========================= */
+
+let genderFilter = "semua";
+
+function setGenderFilter(g) {
+
+    genderFilter = g;
+
+    document.querySelectorAll(".filter-btn")
+        .forEach(b => b.classList.remove("active"));
+
+    document.querySelector(`.filter-btn[data-gender="${g}"]`)
+        .classList.add("active");
+
+    renderStudents();
+
+}
+
+
+function renderStudents() {
+
+    const keyword =
+        document.getElementById("searchInput").value
+            .toLowerCase();
+
+    const filtered = students.filter(s => {
+
+        const matchName =
+            s.name.toLowerCase().includes(keyword);
+
+        const matchGender =
+            genderFilter === "semua" ||
+            s.gender === genderFilter;
+
+        const notPengurus = !s.role;
+        // siswa yang punya "role" (pengurus kelas) disembunyikan dari sini,
+        // soalnya udah muncul di section Struktur Organisasi Kelas
+
+        return matchName && matchGender && notPengurus;
+
+    });
+
+
+    const totalNonPengurus = students.filter(s => !s.role).length;
+
+    document.getElementById("resultCount").textContent =
+        `Menampilkan ${filtered.length} dari ${totalNonPengurus} siswa`;
+
+
+    const grid = document.getElementById("studentGrid");
+
+    if (filtered.length === 0) {
+
+        grid.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:30px 0;">
+                Siswa tidak ditemukan.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML = filtered.map(s => `
+
+        <div class="student-card" onclick="openStudentModal(${s.id})">
+
+            <div class="student-photo">
+                <img
+                    src="${s.photo || ''}"
+                    alt="${s.name}"
+                    onerror="this.src='https://placehold.co/150x150/f0f0f2/777?text=Foto'"
+                >
+            </div>
+
+            <div class="student-name">${s.name}</div>
+            <div class="student-absen">No. Absen: ${s.absen}</div>
+            <div class="student-hint">👆 klik untuk detail</div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+function renderStruktur() {
+
+    function cardFor(role, label, isTop) {
+
+        const s = students.find(x => x.role === role);
+
+        if (!s) {
+            return `
+                <div class="struktur-card ${isTop ? "top" : ""} struktur-empty-card">
+                    <div class="struktur-badge">${label}</div>
+                    <div class="struktur-photo"></div>
+                    <div class="struktur-empty">Belum diisi</div>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="struktur-card ${isTop ? "top" : ""}" onclick="openStudentModal(${s.id})">
+                <div class="struktur-badge">${label}</div>
+                <div class="struktur-photo">
+                    <img
+                        src="${s.photo || ''}"
+                        alt="${s.name}"
+                        onerror="this.src='https://placehold.co/150x150/f0f0f2/777?text=Foto'"
+                    >
+                </div>
+                <div class="struktur-name">${s.name}</div>
+            </div>
+        `;
+
+    }
+
+    document.getElementById("strukturTop").innerHTML =
+        cardFor("Ketua Kelas", "Ketua Kelas", true) +
+        cardFor("Wakil Ketua", "Wakil Ketua", true);
+
+    document.getElementById("strukturMid").innerHTML =
+        cardFor("Sekretaris 1", "Sekretaris 1", false) +
+        cardFor("Sekretaris 2", "Sekretaris 2", false) +
+        cardFor("Bendahara 1", "Bendahara 1", false) +
+        cardFor("Bendahara 2", "Bendahara 2", false);
+
+}
+
+
+function openStudentModal(id) {
+
+    const s = students.find(x => x.id === id);
+
+    if (!s) return;
+
+
+    document.getElementById("modalStudentPhoto").src = s.photo || "";
+    document.getElementById("modalStudentName").textContent = s.name;
+    document.getElementById("modalStudentAbsen").textContent =
+        "No. Absen: " + s.absen + (s.role ? "  ·  " + s.role : "");
+    document.getElementById("modalStudentGender").textContent =
+        s.gender === "L" ? "♂ Laki-laki" : "♀ Perempuan";
+
+
+    document.getElementById("studentModal").classList.add("open");
+    document.getElementById("studentOverlay").classList.add("open");
+
+}
+
+
+function closeStudentModal() {
+
+    document.getElementById("studentModal").classList.remove("open");
+    document.getElementById("studentOverlay").classList.remove("open");
+
+}
+
+
+/* =========================
+   PIKET
+========================= */
+
+function renderPiket() {
+
+    const grid = document.getElementById("piketGrid");
+
+    grid.innerHTML = Object.keys(piket).map(day => `
+
+        <div class="piket-card">
+
+            <div class="piket-day">
+                <span class="piket-day-icon">📅</span>
+                ${day}
+            </div>
+
+            <div class="piket-names">
+                ${
+                    piket[day].length
+                        ? piket[day].map(n => `<span class="piket-pill">${n}</span>`).join("")
+                        : `<span class="piket-pill">Belum diisi</span>`
+                }
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   STATISTIK OTOMATIS
+========================= */
+
+function renderStats() {
+
+    const totalEl = document.getElementById("statTotal");
+    if(totalEl) totalEl.textContent = students.length;
+
+    const lakiEl = document.getElementById("statLaki");
+    if(lakiEl) lakiEl.textContent = students.filter(s => s.gender === "L").length;
+
+    const perempuanEl = document.getElementById("statPerempuan");
+    if(perempuanEl) perempuanEl.textContent = students.filter(s => s.gender === "P").length;
+
+}
+
+
+/* =========================
+   LIGHTBOX (dengan navigasi ← →)
+========================= */
+
+let lightboxImages = [];
+let lightboxIndex = 0;
+
+function getGalleryImages() {
+    return [...document.querySelectorAll(".galeri-item img, #fotoKelasImg")]
+        .map(img => img.src)
+        .filter(src => src && !src.includes("placehold.co"));
+}
+
+function openLightbox(src) {
+    lightboxImages = getGalleryImages();
+    lightboxIndex = lightboxImages.indexOf(src);
+    if (lightboxIndex < 0) lightboxIndex = 0;
+
+    updateLightbox();
+    document.getElementById("lightbox").classList.add("open");
+}
+
+function updateLightbox() {
+    if (!lightboxImages.length) return;
+
+    document.getElementById("lightboxImg").src = lightboxImages[lightboxIndex];
+    document.getElementById("lightboxCounter").textContent =
+        `${lightboxIndex + 1} / ${lightboxImages.length}`;
+}
+
+function lightboxNav(dir) {
+    if (!lightboxImages.length) return;
+
+    lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+    updateLightbox();
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("open");
+}
+
+// Support swipe / keyboard
+document.addEventListener("keydown", (e) => {
+    const lb = document.getElementById("lightbox");
+    if (!lb.classList.contains("open")) return;
+
+    if (e.key === "ArrowLeft") lightboxNav(-1);
+    if (e.key === "ArrowRight") lightboxNav(1);
+    if (e.key === "Escape") closeLightbox();
+});
+
+
+/* =========================
+   MUSIK
+========================= */
+
+let currentAudio = null;
+let currentSongId = null;
+
+function renderSongs() {
+
+    const grid = document.getElementById("songGrid");
+
+    if (songs.length === 0) {
+
+        grid.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:30px 0;">
+                Belum ada lagu. Tambahin di data "songs" ya.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML = songs.map(song => `
+
+        <div class="song-card" id="songCard-${song.id}">
+
+            <div class="song-cover">
+                <img
+                    src="${song.cover || ''}"
+                    alt="${song.title}"
+                    onerror="this.src='https://placehold.co/200x200/f0f0f2/777?text=%F0%9F%8E%B5'"
+                >
+
+                <button class="song-play" id="playBtn-${song.id}" onclick="playSong(${song.id})">
+                    ▶
+                </button>
+            </div>
+
+            <div class="song-info">
+                <div class="song-title">${song.title}</div>
+                <div class="song-artist">${song.artist || ''}</div>
+
+                <div class="song-progress">
+                    <div class="song-progress-fill" id="progress-${song.id}"></div>
+                </div>
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+function playSong(id) {
+
+    const song = songs.find(s => s.id === id);
+
+    if (!song) return;
+
+
+    // kalau lagu yang sama lagi main, pause/resume aja
+    if (currentSongId === id && currentAudio) {
+
+        if (currentAudio.paused) {
+            currentAudio.play();
+            document.getElementById(`playBtn-${id}`).textContent = "⏸";
+            document.getElementById(`songCard-${id}`)?.classList.add("playing");
+            updateNowPlaying(song, true);
+        } else {
+            currentAudio.pause();
+            document.getElementById(`playBtn-${id}`).textContent = "▶";
+            document.getElementById(`songCard-${id}`)?.classList.remove("playing");
+            updateNowPlaying(song, false);
+        }
+
+        return;
+
+    }
+
+
+    // stop lagu sebelumnya
+    if (currentAudio) {
+
+        currentAudio.pause();
+
+        const oldBtn = document.getElementById(`playBtn-${currentSongId}`);
+        if (oldBtn) oldBtn.textContent = "▶";
+
+        document.getElementById(`songCard-${currentSongId}`)?.classList.remove("playing");
+
+    }
+
+
+    currentAudio = new Audio(song.src);
+    currentSongId = id;
+
+    currentAudio.play();
+
+    document.getElementById(`playBtn-${id}`).textContent = "⏸";
+    document.getElementById(`songCard-${id}`)?.classList.add("playing");
+
+    updateNowPlaying(song, true);
+
+
+    currentAudio.ontimeupdate = () => {
+
+        const percent =
+            (currentAudio.currentTime / currentAudio.duration) * 100 || 0;
+
+        const bar = document.getElementById(`progress-${id}`);
+        if (bar) bar.style.width = percent + "%";
+
+    };
+
+
+    currentAudio.onended = () => {
+
+        document.getElementById(`playBtn-${id}`).textContent = "▶";
+        document.getElementById(`songCard-${id}`)?.classList.remove("playing");
+
+        // lanjut otomatis ke lagu berikutnya, balik ke awal kalau udah abis
+        const currentIndex = songs.findIndex(s => s.id === id);
+        const nextSong = songs[currentIndex + 1] || songs[0];
+
+        if (nextSong) {
+            playSong(nextSong.id);
+        } else {
+            document.getElementById("nowPlaying").classList.remove("show");
+        }
+
+    };
+
+}
+
+
+function toggleCurrentSong() {
+
+    if (!currentAudio) return;
+
+    playSong(currentSongId);
+
+}
+
+
+function updateNowPlaying(song, isPlaying) {
+
+    document.getElementById("nowPlayingTitle").textContent =
+        `${song.title} — ${song.artist || ''}`;
+
+    document.getElementById("nowPlayingBtn").textContent =
+        isPlaying ? "⏸" : "▶";
+
+    document.getElementById("nowPlaying").classList.add("show");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+renderStudents();
+renderStruktur();
+renderPiket();
+renderStats();
+renderSongs();
+
+/* =========================
+   VIDEO ↔ MUSIK SYNC (multi video)
+========================= */
+
+function pauseMusicForVideo() {
+    if (currentAudio && !currentAudio.paused) {
+        currentAudio.pause();
+
+        if (currentSongId) {
+            const btn = document.getElementById(`playBtn-${currentSongId}`);
+            if (btn) btn.textContent = "▶";
+            document.getElementById(`songCard-${currentSongId}`)?.classList.remove("playing");
+        }
+
+        document.getElementById("nowPlayingBtn").textContent = "▶";
+    }
+}
+
+function resumeMusicAfterVideo() {
+    // Cek dulu apakah masih ada video yang lagi play
+    const adaYangPlay = [...document.querySelectorAll(".kelas-video")]
+        .some(v => !v.paused && !v.ended);
+
+    if (adaYangPlay) return; // masih ada video play → jangan nyalain musik
+
+    if (currentAudio && currentAudio.paused && currentSongId) {
+        currentAudio.play().catch(() => {});
+
+        const btn = document.getElementById(`playBtn-${currentSongId}`);
+        if (btn) btn.textContent = "⏸";
+        document.getElementById(`songCard-${currentSongId}`)?.classList.add("playing");
+
+        document.getElementById("nowPlayingBtn").textContent = "⏸";
+    }
+}
+
+// Pasang event ke SEMUA video yang punya class .kelas-video
+document.querySelectorAll(".kelas-video").forEach(video => {
+
+    // Saat salah satu video play:
+    // 1. Pause semua video lain
+    // 2. Pause musik
+    video.addEventListener("play", () => {
+        document.querySelectorAll(".kelas-video").forEach(v => {
+            if (v !== video && !v.paused) v.pause();
+        });
+        pauseMusicForVideo();
+    });
+
+    // Saat video di-pause / selesai → coba nyalain musik lagi
+    video.addEventListener("pause", resumeMusicAfterVideo);
+    video.addEventListener("ended", resumeMusicAfterVideo);
+});
+
+</script>
+
+</body>
+</html>
